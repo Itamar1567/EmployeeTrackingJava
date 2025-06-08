@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner inputManager = new Scanner(System.in);
+    //A department list to hold all created departments
     static ArrayList<Department> departments = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -20,6 +21,7 @@ public class Main {
 
             userInput = inputManager.next();
 
+            //Switch statement to check for the user's picks
             switch (userInput) {
                 case "1" ->
                     departmentCreator(userInput);
@@ -33,6 +35,7 @@ public class Main {
         }
     }
 
+//This function creates a new department, and sets all the values of said department
     public static void departmentCreator(String userInput) {
         Department department = new Department();
         System.out.println("Enter Department ID: ");
@@ -47,9 +50,8 @@ public class Main {
         System.out.println("Department created\nReturning to main page...\n");
         departments.add(department);
 
-    }
-
-    ;
+    };
+    //This function creates an employee by setting all the values of a new employee object
     public static void employeeCreator(String userInput) {
         Employee newEmployee = new Employee();
         System.out.println("Enter First Name: ");
@@ -70,7 +72,7 @@ public class Main {
 
         System.out.println("Assign Department: ");
         userInput = inputManager.next();
-        searchForDepartment(userInput, departments, newEmployee);
+        searchForDepartment(userInput, newEmployee);
 
     }
 
@@ -79,9 +81,19 @@ public class Main {
         System.out.flush();
     }
 
-    public static void searchForDepartment(String userInput, ArrayList<Department> departments, Employee newEmployee) {
+    public static void searchForDepartment(String userInput, Employee newEmployee) {
+        //Checker for cases where no departments exist
         if (departments.isEmpty()) {
             System.out.println("No departments exists in the database, Enter: \n1. Create Department\n2. Exit");
+            userInput = inputManager.next();
+            if(userInput.equals("1")){
+                departmentCreator(userInput);
+                userInput = inputManager.next();
+            }
+            else
+            {
+                return;
+            }
         }
         while (true) {
             for (int i = 0; i < departments.size(); i++) {
@@ -105,6 +117,7 @@ public class Main {
 
     }
 
+//This function iterates through all created departments and checks if an entered employee ID exists in that department
     public static void searchEmployeesInDepartment(String userInput) {
         while (!userInput.equals("2")) {
             System.out.println("Enter employee ID: ");

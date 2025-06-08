@@ -3,6 +3,19 @@ import java.util.Scanner;
 
 public class Employee {
 
+ /*
+ This class's purpose is to create employee objects with given criteria such as
+
+ ID
+ name
+ Assigned Department
+ Salary
+ etc...
+
+ and add these employee objects to departments
+
+ */
+    private final Validation validation = new Validation();
     private final Scanner s = new Scanner(System.in);
     private int id;
     private float salary;
@@ -31,9 +44,10 @@ public class Employee {
 
     public void setId(String userInput) {
         boolean isValid = false;
+        Integer parsedString = validation.tryParseInt(userInput);
         while (!isValid) {
-            if (userInput.length() <= 6 && tryParseInt(userInput) != null && tryParseInt(userInput) > 0) {
-                id = tryParseInt(userInput);
+            if (userInput.length() <= 6 && parsedString != null && parsedString > 0) {
+                id = parsedString;
                 isValid = true;
 
             } else {
@@ -48,9 +62,10 @@ public class Employee {
     public void setSalary(String userInput) {
 
         boolean isValid = false;
+        Integer parsedString = validation.tryParseInt(userInput);
         while (!isValid) {
-            if (tryParseInt(userInput) != null && tryParseInt(userInput) > 0) {
-                salary = tryParseInt(userInput);
+            if (parsedString != null && parsedString > 0) {
+                salary = parsedString;
                 isValid = true;
 
             } else {
@@ -102,11 +117,4 @@ public class Employee {
         return lastname;
     }
 
-    public static Integer tryParseInt(String someText) {
-        try {
-            return Integer.parseInt(someText);
-        } catch (NumberFormatException ex) {
-            return null;
-        }
-    }
 }

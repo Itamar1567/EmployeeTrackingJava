@@ -1,6 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Department{
+
+    /*
+    This class's purpose is to create department object with criteria such as:
+
+    ID
+    Name
+    Head of Department
+    etc..
+
+    and add employees into that department
+    */
+
+    private final Validation validation = new Validation();
     private final Scanner s = new Scanner(System.in);
     private int totalEmployees;
     private int id;
@@ -31,12 +44,14 @@ public class Department{
 
     public Employee searchForEmployeeById(String id){
         int empId;
-        while(tryParseInt(id) == null){
+        Integer parsedString = validation.tryParseInt(id);
+        while(parsedString == null){
             System.out.println("Please Enter a valid Id: ");
             id = s.next();
+            parsedString = validation.tryParseInt(id);
         }
 
-        empId = Integer.parseInt(id);
+        empId = parsedString;
 
         
         for(int i = 0; i < employees.size(); i++)
@@ -53,10 +68,12 @@ public class Department{
     public void setId(String id)
     {
         boolean isValid = false;
+        Integer parsedString = validation.tryParseInt(id);
+        //Makes sure the user enters a valid ID
         while(!isValid){
-            if(id.length() <= 4 && tryParseInt(id) != null && tryParseInt(id) > 0)
+            if(id.length() <= 4 && parsedString != null && parsedString > 0)
             {
-                this.id = tryParseInt(id);
+                this.id = parsedString;
                 isValid = true;
 
             }
@@ -97,14 +114,6 @@ public class Department{
 
     public int getEmployeesInDepartment(){
         return totalEmployees;
-    }
-
-    public static Integer tryParseInt(String someText) {
-        try {
-            return Integer.parseInt(someText);
-        } catch (NumberFormatException ex) {
-            return null;
-        }
-    }
+    }   
    
 }
