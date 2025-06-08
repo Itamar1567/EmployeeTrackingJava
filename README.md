@@ -1,10 +1,14 @@
 # Employee Tracking Java Project
 
-A small console-based Java project to practice object-oriented programming, user input handling, and control flow.
+This is a small console-based Java project designed to demonstrate proficiency with object-oriented programming and user input validation.
 
-Features:
+## Features
+
 - Department creation
 - Employee creation
-- Simple menu system
+- Simple menu-driven UI
+- Input validation for IDs and names
 
-Built to demonstrate basic proficiency with Java and OOP principles.
+## Technologies
+
+- Java (Console Application)
