@@ -68,9 +68,10 @@ public class Department{
     public void setId(String id)
     {
         boolean isValid = false;
-        Integer parsedString = validation.tryParseInt(id);
+        Integer parsedString;
         //Makes sure the user enters a valid ID
         while(!isValid){
+            parsedString = validation.tryParseInt(id);
             if(id.length() <= 4 && parsedString != null && parsedString > 0)
             {
                 this.id = parsedString;

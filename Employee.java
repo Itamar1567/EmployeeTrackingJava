@@ -23,6 +23,7 @@ public class Employee {
     private String department;
     private String firstname;
     private String lastname;
+    private String name;
 
     public Employee() {
         id = 0;
@@ -31,6 +32,7 @@ public class Employee {
         department = "";
         firstname = "";
         lastname = "";
+        name = "";
     }
 
     public Employee(int id, float salary, String pos, String department, String firstname, String lastname) {
@@ -40,12 +42,14 @@ public class Employee {
         this.department = department;
         this.firstname = firstname;
         this.lastname = lastname;
+        name = firstname + " " + lastname;
     }
 
     public void setId(String userInput) {
         boolean isValid = false;
-        Integer parsedString = validation.tryParseInt(userInput);
+        Integer parsedString;
         while (!isValid) {
+            parsedString = validation.tryParseInt(userInput);
             if (userInput.length() <= 6 && parsedString != null && parsedString > 0) {
                 id = parsedString;
                 isValid = true;
@@ -62,8 +66,9 @@ public class Employee {
     public void setSalary(String userInput) {
 
         boolean isValid = false;
-        Integer parsedString = validation.tryParseInt(userInput);
+        Integer parsedString;
         while (!isValid) {
+            parsedString = validation.tryParseInt(userInput);
             if (parsedString != null && parsedString > 0) {
                 salary = parsedString;
                 isValid = true;
@@ -87,10 +92,16 @@ public class Employee {
 
     public void setFirstname(String fn) {
         firstname = fn;
+        setName();  
     }
 
     public void setLastname(String ln) {
         lastname = ln;
+        setName();
+    }
+
+    public void setName(){
+        name = lastname + " " + firstname;
     }
 
     public int getId() {
@@ -115,6 +126,10 @@ public class Employee {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public String getName(){
+        return name;
     }
 
 }

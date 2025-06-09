@@ -15,7 +15,7 @@ public class Main {
             Welcome to the employer database\nHere are actions you may take:\n
             1.Department Creation\n
             2.New Employee\n
-            3.Search employee in department\n
+            3.Search for employee\n
             4.Exit Program\n
             """);
 
@@ -124,7 +124,11 @@ public class Main {
             userInput = inputManager.next();
             for (int i = 0; i < departments.size(); i++) {
                 if (departments.get(i).searchForEmployeeById(userInput) != null) {
-                    System.out.println(departments.get(i).searchForEmployeeById(userInput).getFirstname());
+                    System.out.println("Name: " + departments.get(i).searchForEmployeeById(userInput).getName());
+                    System.out.println("Department: " + departments.get(i).searchForEmployeeById(userInput).getDepartment());
+                    System.out.println("Position: " + departments.get(i).searchForEmployeeById(userInput).getPosition());
+                    System.out.println("Identification: " + departments.get(i).searchForEmployeeById(userInput).getId());
+                    System.out.println("Salary: " + departments.get(i).searchForEmployeeById(userInput).getSalary());
                     return;
                 }
             }
